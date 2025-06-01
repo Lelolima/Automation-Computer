@@ -138,7 +138,7 @@ Sistema avançado de automação que combina navegação web complexa e controle
 
 1. **Clone o repositório**
    ```bash
-   git clone https://github.com/seu-usuario/automation-agent.git
+   git clone https://github.com/Lelolima/automation-Computer.git
    cd automation-agent
    ```
 
@@ -326,8 +326,8 @@ pytest --cov=src --cov-report=html
 
 ### 🆘 Suporte Técnico
 1. Consulte nossa [documentação](docs/)
-2. Verifique as [issues abertas](https://github.com/seu-usuario/automation-agent/issues)
-3. [Abra um ticket](https://github.com/seu-usuario/automation-agent/issues/new/choose)
+2. Verifique as [issues abertas](https://github.com/Lelolima/automation-Computer/issues)
+3. [Abra um ticket](https://github.com/Lelolima/automation-Computer/issues/new/choose)
 
 ## 🤝 Contribuindo
 
@@ -351,7 +351,7 @@ Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 ## 📞 Contato
 
 Equipe de Desenvolvimento - [lelolima806@gmail.com
-Link do Projeto: [https://github.com/Lelolima/automation-agent](https://github.com/Lelolima/automation-agent)
+Link do Projeto: [https://github.com/Lelolima/automation-Computer](https://github.com/Lelolima/automation-Computer)
 
 ---
 
