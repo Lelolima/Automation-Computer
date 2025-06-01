@@ -139,7 +139,7 @@ Sistema avançado de automação que combina navegação web complexa e controle
 1. **Clone o repositório**
    ```bash
    git clone https://github.com/Lelolima/automation-Computer.git
-   cd automation-agent
+   cd automation-Computer
    ```
 
 2. **Configure o ambiente virtual**
