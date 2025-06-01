@@ -350,12 +350,11 @@ Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
 ## 📞 Contato
 
-Equipe de Desenvolvimento - [contato@exemplo.com](mailto:contato@exemplo.com)
-
-Link do Projeto: [https://github.com/seu-usuario/automation-agent](https://github.com/seu-usuario/automation-agent)
+Equipe de Desenvolvimento - [lelolima806@gmail.com
+Link do Projeto: [https://github.com/Lelolima/automation-agent](https://github.com/Lelolima/automation-agent)
 
 ---
 
 <div align="center">
-  <sub>Criado com ❤️ por [Sua Empresa]</sub>
+  <sub>Criado com ❤️ por [Wellington de lima catarina>
 </div>
