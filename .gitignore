@@ -1,0 +1,315 @@
+# Arquivos de ambiente
+.env
+*.env.local
+*.env.*.local
+
+# Arquivos de log
+logs/*
+*.log
+
+# Arquivos de cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# Diretórios de ambiente virtual
+venv/
+env/
+.venv/
+
+# Arquivos de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.swp
+*~
+
+# Arquivos de banco de dados
+*.db
+*.sqlite3
+*.sqlite
+
+# Arquivos de mídia
+*.mp3
+*.wav
+*.mp4
+*.mov
+
+# Arquivos de dados
+*.csv
+*.xlsx
+*.xls
+*.pdf
+*.docx
+*.pptx
+
+# Arquivos de cache do Playwright
+playwright/.cache/
+playwright/package-lock.json
+playwright/packages/playwright-core/
+
+# Arquivos de cache do Node
+node_modules/
+package-lock.json
+
+# Arquivos de build
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Arquivos de configuração local
+config/local/
+
+# Arquivos de credenciais
+*_credentials.json
+*.pem
+*.key
+
+# Arquivos de dump de memória
+*.hprof
+*.core
+dump.rdb
+
+# Arquivos de cobertura de teste
+.coverage
+htmlcov/
+
+# Arquivos de ambiente virtual
+.env.venv
+
+# Arquivos do Jupyter Notebook
+.ipynb_checkpoints
+
+# Arquivos do VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Arquivos do PyCharm
+.idea/
+.idea_modules/
+
+# Arquivos do Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Arquivos do macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Arquivos de cache do Python
+.python-version
+.python-version.*
+
+# Arquivos de cache do pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Arquivos de cache do setuptools
+/var/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Arquivos de cache do Mypy
+.mypy_cache/
+.mypy_cache/*
+
+# Arquivos de cache do Pylint
+.pylintd/
+
+# Arquivos de cache do Vim
+*.swp
+*.swo
+*~
+
+# Arquivos de cache do Emacs
+*~
+\#*
+.\#*
+
+# Arquivos de cache do Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Arquivos de cache do Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Arquivos de cache do PyCharm
+.idea/
+.idea_modules/
+
+# Arquivos de cache do VS Code
+.vscode/
+
+# Arquivos de cache do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de cache do Cython
+*.so
+
+# Arquivos de cache do C
+*.o
+*.so
+
+# Arquivos de cache do C++
+*.dll
+*.so
+*.dylib
+
+# Arquivos de cache do Java
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Arquivos de cache do Maven
+target/
+
+# Arquivos de cache do Gradle
+.gradle/
+build/
+
+# Arquivos de cache do Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de cache do Bower
+bower_components/
+
+# Arquivos de cache do Ruby
+/.bundle
+/vendor/bundle
+
+# Arquivos de cache do Composer
+/vendor/
+
+# Arquivos de cache do Python
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de cache do Cython
+*.so
+
+# Arquivos de cache do C
+*.o
+*.so
+
+# Arquivos de cache do C++
+*.dll
+*.so
+*.dylib
+
+# Arquivos de cache do Java
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Arquivos de cache do Maven
+target/
+
+# Arquivos de cache do Gradle
+.gradle/
+build/
+
+# Arquivos de cache do Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de cache do Bower
+bower_components/
+
+# Arquivos de cache do Ruby
+/.bundle
+/vendor/bundle
+
+# Arquivos de cache do Composer
+/vendor/
+
+# Arquivos de cache do Python
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de cache do Cython
+*.so
+
+# Arquivos de cache do C
+*.o
+*.so
+
+# Arquivos de cache do C++
+*.dll
+*.so
+*.dylib
+
+# Arquivos de cache do Java
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Arquivos de cache do Maven
+target/
+
+# Arquivos de cache do Gradle
+.gradle/
+build/
+
+# Arquivos de cache do Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos de cache do Bower
+bower_components/
+
+# Arquivos de cache do Ruby
+/.bundle
+/vendor/bundle
+
+# Arquivos de cache do Composer
+/vendor/
