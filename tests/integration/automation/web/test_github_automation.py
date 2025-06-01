@@ -132,32 +132,72 @@ class TestGitHubAutomation:
     def _setup_local_repository(self):
         """Configura o repositório Git local e faz o push para o GitHub."""
         try:
-            # Inicializa o repositório Git
-            subprocess.run(["git", "init"], check=True, cwd=str(Path(__file__).parent.parent.parent.parent.parent.absolute()))
+            project_root = str(Path(__file__).parent.parent.parent.parent.parent.absolute())
+            
+            # Inicializa o repositório Git se ainda não estiver inicializado
+            if not (Path(project_root) / ".git").exists():
+                subprocess.run(["git", "init"], check=True, cwd=project_root)
+            
+            # Configura o usuário do Git se ainda não estiver configurado
+            try:
+                subprocess.run(
+                    ["git", "config", "user.name", "GitHub Actions Bot"], 
+                    check=True, 
+                    cwd=project_root
+                )
+                subprocess.run(
+                    ["git", "config", "user.email", "actions@github.com"], 
+                    check=True, 
+                    cwd=project_root
+                )
+            except subprocess.CalledProcessError:
+                pass  # As configurações já podem existir
             
             # Adiciona todos os arquivos
-            subprocess.run(["git", "add", "."], check=True, cwd=str(Path(__file__).parent.parent.parent.parent.parent.absolute()))
+            subprocess.run(["git", "add", "."], check=True, cwd=project_root)
             
             # Faz o commit inicial
-            subprocess.run(
-                ["git", "commit", "-m", "Initial commit: Configuração inicial do projeto"], 
-                check=True, 
-                cwd=str(Path(__file__).parent.parent.parent.parent.parent.absolute())
+            try:
+                subprocess.run(
+                    ["git", "commit", "-m", "Initial commit: Configuração inicial do projeto"], 
+                    check=True, 
+                    cwd=project_root,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE
+                )
+            except subprocess.CalledProcessError as e:
+                if "nothing to commit" not in e.stderr.decode():
+                    raise
+            
+            # Verifica se já existe um repositório remoto
+            result = subprocess.run(
+                ["git", "remote", "get-url", "origin"], 
+                cwd=project_root,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
             )
             
-            # Adiciona o repositório remoto (substitua com sua URL real)
+            # Se não houver repositório remoto, podemos adicionar um
+            if result.returncode != 0:
+                print("\nAviso: Nenhum repositório remoto configurado.")
+                print(f"Para configurar manualmente, execute:")
+                print(f"cd {project_root}")
+                print(f"git remote add origin https://github.com/{self.GITHUB_USERNAME}/{self.PROJECT_NAME}.git")
+                print("git push -u origin master\n")
+            
+            # Descomente as linhas abaixo para configurar automaticamente
             # repo_url = f"https://github.com/{self.GITHUB_USERNAME}/{self.PROJECT_NAME}.git"
             # subprocess.run(
             #     ["git", "remote", "add", "origin", repo_url], 
-            #     check=True, 
-            #     cwd=str(Path(__file__).parent.parent.parent.parent.parent.absolute())
+            #     check=False, 
+            #     cwd=project_root
             # )
             # 
-            # # Faz o push para o repositório remoto
+            # # Tenta fazer o push para o repositório remoto
             # subprocess.run(
-            #     ["git", "push", "-u", "origin", "main"], 
-            #     check=True, 
-            #     cwd=str(Path(__file__).parent.parent.parent.parent.parent.absolute())
+            #     ["git", "push", "-u", "origin", "master"], 
+            #     check=False, 
+            #     cwd=project_root
             # )
             
         except subprocess.CalledProcessError as e:
