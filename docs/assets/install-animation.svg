@@ -1,0 +1,147 @@
+<!-- 
+  SVG Animado: Instalação Rápida (Quick Install)
+  Uso: Demonstrar simplicidade de instalação em README ou Landing Page
+  Estilo: Moderno, Clean, Tech
+-->
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradientes -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="terminalGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#334155;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="successGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#34d399;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="codeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#93c5fd;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Filtros -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgGradient)"/>
+  
+  <!-- Grid Pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.3"/>
+  </pattern>
+  <rect width="800" height="400" fill="url(#grid)"/>
+  
+  <!-- Terminal Window -->
+  <g transform="translate(100, 50)" filter="url(#shadow)">
+    <!-- Terminal Frame -->
+    <rect width="600" height="300" rx="12" fill="url(#terminalGradient)" stroke="#475569" stroke-width="2"/>
+    
+    <!-- Title Bar -->
+    <rect width="600" height="40" rx="12" fill="#1e293b"/>
+    <rect width="600" height="40" rx="12" fill="none" stroke="#475569" stroke-width="2"/>
+    
+    <!-- Buttons -->
+    <circle cx="30" cy="20" r="6" fill="#ef4444">
+      <animate attributeName="opacity" values="1;0.7;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="50" cy="20" r="6" fill="#f59e0b">
+      <animate attributeName="opacity" values="1;0.7;1" dur="2s" begin="0.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="70" cy="20" r="6" fill="#10b981">
+      <animate attributeName="opacity" values="1;0.7;1" dur="2s" begin="0.4s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Title -->
+    <text x="300" y="25" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="14" font-weight="bold">
+      bash — 80x24
+    </text>
+    
+    <!-- Terminal Content -->
+    <g transform="translate(30, 70)">
+      <!-- Line 1: Prompt -->
+      <text x="0" y="0" fill="#94a3b8" font-family="monospace" font-size="16">
+        <tspan fill="#10b981">$</tspan>
+        <tspan x="20" fill="url(#codeGradient)">pip install elite-automation</tspan>
+        <cursor x="340" y="-12" width="2" height="20" fill="#10b981">
+          <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+        </cursor>
+      </text>
+      
+      <!-- Line 2: Progress (Animated) -->
+      <text x="0" y="30" fill="#60a5fa" font-family="monospace" font-size="14" opacity="0">
+        <tspan>Collecting elite-automation...</tspan>
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="0.5s" fill="freeze"/>
+      </text>
+      
+      <!-- Line 3: Download -->
+      <text x="0" y="55" fill="#60a5fa" font-family="monospace" font-size="14" opacity="0">
+        <tspan>Downloading elite-automation-2.0.0.tar.gz (2.4 MB)</tspan>
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="1.2s" fill="freeze"/>
+      </text>
+      
+      <!-- Line 4: Installing -->
+      <text x="0" y="80" fill="#60a5fa" font-family="monospace" font-size="14" opacity="0">
+        <tspan>Installing collected packages: typer, rich, loguru, cryptography...</tspan>
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.0s" fill="freeze"/>
+      </text>
+      
+      <!-- Line 5: Success -->
+      <text x="0" y="110" fill="url(#successGradient)" font-family="monospace" font-size="16" font-weight="bold" opacity="0">
+        <tspan>✓ Successfully installed elite-automation-2.0.0</tspan>
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="3.0s" fill="freeze"/>
+      </text>
+      
+      <!-- Line 6: Next Step -->
+      <text x="0" y="145" fill="#94a3b8" font-family="monospace" font-size="14" opacity="0">
+        <tspan fill="#10b981">$</tspan>
+        <tspan x="20" fill="#fbbf24">elite-automation --help</tspan>
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="3.5s" fill="freeze"/>
+      </text>
+    </g>
+    
+    <!-- Loading Bar (Animated) -->
+    <rect x="30" y="240" width="540" height="6" rx="3" fill="#334155" opacity="0">
+      <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.5s" fill="freeze"/>
+    </rect>
+    <rect x="30" y="240" height="6" rx="3" fill="url(#successGradient)" opacity="0">
+      <animate attributeName="width" values="0;540" dur="2.5s" begin="0.5s" fill="freeze"/>
+      <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.5s" fill="freeze"/>
+    </rect>
+  </g>
+  
+  <!-- Decorative Elements -->
+  <g opacity="0.6">
+    <circle cx="50" cy="350" r="40" fill="none" stroke="#60a5fa" stroke-width="2">
+      <animate attributeName="r" values="30;50;30" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="750" cy="50" r="60" fill="none" stroke="#10b981" stroke-width="2">
+      <animate attributeName="r" values="50;70;50" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;0.5;0.2" dur="4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Badge -->
+  <g transform="translate(620, 320)">
+    <rect width="160" height="50" rx="25" fill="#10b981" filter="url(#glow)">
+      <animateTransform attributeName="transform" type="scale" values="1;1.05;1" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    <text x="80" y="30" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+      v2.0.0 Elite
+    </text>
+  </g>
+</svg>

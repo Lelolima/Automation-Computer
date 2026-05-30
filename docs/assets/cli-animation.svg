@@ -1,0 +1,268 @@
+<!-- 
+  SVG Animado: CLI em Ação (Command Line Interface)
+  Uso: Demonstrar a interface de linha de comando profissional com Typer + Rich
+  Estilo: Terminal, Developer Tools, Interactive
+-->
+<svg width="850" height="500" viewBox="0 0 850 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradientes -->
+    <linearGradient id="cliBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cliWindow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="commandGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#93c5fd;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="outputGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#34d399;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="errorGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f87171;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="infoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Filtros -->
+    <filter id="cliGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="cliShadow">
+      <feDropShadow dx="0" dy="8" stdDeviation="20" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="850" height="500" fill="url(#cliBg)"/>
+  
+  <!-- Animated Grid -->
+  <pattern id="cliGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.2"/>
+  </pattern>
+  <rect width="850" height="500" fill="url(#cliGrid)"/>
+  
+  <!-- Title -->
+  <text x="425" y="50" text-anchor="middle" fill="#f1f5f9" font-family="Arial, sans-serif" font-size="24" font-weight="bold">
+    Elite Automation CLI
+  </text>
+  <text x="425" y="75" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="14">
+    Professional Command-Line Interface • Typer + Rich UI
+  </text>
+  
+  <!-- Terminal Window -->
+  <g transform="translate(75, 100)" filter="url(#cliShadow)">
+    <!-- Window Frame -->
+    <rect width="700" height="360" rx="12" fill="url(#cliWindow)" stroke="#475569" stroke-width="2"/>
+    
+    <!-- Title Bar -->
+    <rect width="700" height="45" rx="12" fill="#0f172a"/>
+    <rect width="700" height="45" rx="12" fill="none" stroke="#475569" stroke-width="2"/>
+    
+    <!-- Window Controls -->
+    <circle cx="35" cy="23" r="7" fill="#ef4444">
+      <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="60" cy="23" r="7" fill="#f59e0b">
+      <animate attributeName="opacity" values="1;0.6;1" dur="2s" begin="0.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="85" cy="23" r="7" fill="#10b981">
+      <animate attributeName="opacity" values="1;0.6;1" dur="2s" begin="0.4s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Window Title -->
+    <text x="350" y="28" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="14" font-weight="bold">
+      elite-automation — bash — 80x24
+    </text>
+    
+    <!-- Terminal Content -->
+    <g transform="translate(35, 75)">
+      
+      <!-- Line 1: Version Command -->
+      <text x="0" y="0" fill="#94a3b8" font-family="monospace" font-size="15">
+        <tspan fill="#10b981">$</tspan>
+        <tspan x="25" fill="url(#commandGrad)">elite-automation version</tspan>
+      </text>
+      
+      <!-- Line 2-5: Version Output (Animated Appearance) -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="0.5s" fill="freeze"/>
+        
+        <text x="0" y="30" fill="#f1f5f9" font-family="monospace" font-size="14">
+          <tspan fill="#3b82f6" font-weight="bold">╭─</tspan>
+          <tspan fill="#94a3b8">──────────────────────────────────────</tspan>
+          <tspan fill="#3b82f6" font-weight="bold">─╮</tspan>
+        </text>
+        <text x="0" y="50" fill="#f1f5f9" font-family="monospace" font-size="14">
+          <tspan fill="#3b82f6" font-weight="bold">│</tspan>
+          <tspan x="25" fill="#fbbf24" font-weight="bold">Elite Automation</tspan>
+          <tspan x="400" fill="#94a3b8">v2.0.0</tspan>
+          <tspan fill="#3b82f6" font-weight="bold">│</tspan>
+        </text>
+        <text x="0" y="70" fill="#f1f5f9" font-family="monospace" font-size="14">
+          <tspan fill="#3b82f6" font-weight="bold">│</tspan>
+          <tspan x="25" fill="#94a3b8">Enterprise-Grade Automation</tspan>
+          <tspan fill="#3b82f6" font-weight="bold">│</tspan>
+        </text>
+        <text x="0" y="90" fill="#f1f5f9" font-family="monospace" font-size="14">
+          <tspan fill="#3b82f6" font-weight="bold">╰─</tspan>
+          <tspan fill="#94a3b8">──────────────────────────────────────</tspan>
+          <tspan fill="#3b82f6" font-weight="bold">─╯</tspan>
+        </text>
+      </g>
+      
+      <!-- Line 6: Health Command -->
+      <text x="0" y="125" fill="#94a3b8" font-family="monospace" font-size="15" opacity="0">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="1.5s" fill="freeze"/>
+        <tspan fill="#10b981">$</tspan>
+        <tspan x="25" fill="url(#commandGrad)">elite-automation health</tspan>
+        <cursor x="280" y="-12" width="2" height="18" fill="#10b981">
+          <animate attributeName="opacity" values="1;0;1" dur="1s" begin="1.5s" repeatCount="indefinite"/>
+        </cursor>
+      </text>
+      
+      <!-- Line 7-14: Health Check Output (Animated) -->
+      <g opacity="0">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.5s" fill="freeze"/>
+        
+        <!-- Health Header -->
+        <text x="0" y="155" fill="#f1f5f9" font-family="monospace" font-size="14" font-weight="bold">
+          <tspan fill="#3b82f6">Running health checks...</tspan>
+        </text>
+        
+        <!-- Health Items -->
+        <text x="0" y="180" fill="#f1f5f9" font-family="monospace" font-size="13">
+          <tspan fill="#10b981">✓</tspan>
+          <tspan x="25" fill="#94a3b8">Config:</tspan>
+          <tspan x="100" fill="#10b981">OK</tspan>
+          <tspan x="150" fill="#60a5fa">[Loaded]</tspan>
+        </text>
+        <text x="0" y="200" fill="#f1f5f9" font-family="monospace" font-size="13">
+          <tspan fill="#10b981">✓</tspan>
+          <tspan x="25" fill="#94a3b8">Security:</tspan>
+          <tspan x="100" fill="#10b981">OK</tspan>
+          <tspan x="150" fill="#60a5fa">[AES-256, JWT, bcrypt]</tspan>
+        </text>
+        <text x="0" y="220" fill="#f1f5f9" font-family="monospace" font-size="13">
+          <tspan fill="#10b981">✓</tspan>
+          <tspan x="25" fill="#94a3b8">Web:</tspan>
+          <tspan x="100" fill="#10b981">OK</tspan>
+          <tspan x="150" fill="#60a5fa">[Playwright Ready]</tspan>
+        </text>
+        <text x="0" y="240" fill="#f1f5f9" font-family="monospace" font-size="13">
+          <tspan fill="#f59e0b">⚠</tspan>
+          <tspan x="25" fill="#94a3b8">Desktop:</tspan>
+          <tspan x="100" fill="#f59e0b">HEADLESS</tspan>
+          <tspan x="180" fill="#60a5fa">[No GUI detected]</tspan>
+        </text>
+        <text x="0" y="260" fill="#f1f5f9" font-family="monospace" font-size="13">
+          <tspan fill="#10b981">✓</tspan>
+          <tspan x="25" fill="#94a3b8">LLM:</tspan>
+          <tspan x="100" fill="#10b981">OK</tspan>
+          <tspan x="150" fill="#60a5fa">[Anthropic Ready]</tspan>
+        </text>
+        <text x="0" y="280" fill="#f1f5f9" font-family="monospace" font-size="13">
+          <tspan fill="#10b981">✓</tspan>
+          <tspan x="25" fill="#94a3b8">LGPD:</tspan>
+          <tspan x="100" fill="#10b981">COMPLIANT</tspan>
+          <tspan x="210" fill="#60a5fa">[11 Articles Covered]</tspan>
+        </text>
+        
+        <!-- Health Summary -->
+        <text x="0" y="310" fill="#f1f5f9" font-family="monospace" font-size="14" font-weight="bold">
+          <tspan fill="#3b82f6">╭─</tspan>
+          <tspan fill="#94a3b8">────────────────────────────────────────────</tspan>
+          <tspan fill="#3b82f6" font-weight="bold">─╮</tspan>
+        </text>
+        <text x="0" y="330" fill="#f1f5f9" font-family="monospace" font-size="14" font-weight="bold">
+          <tspan fill="#3b82f6" font-weight="bold">│</tspan>
+          <tspan x="25" fill="#10b981" font-weight="bold">All systems operational</tspan>
+          <tspan x="450" fill="#94a3b8">5/6 healthy</tspan>
+          <tspan fill="#3b82f6" font-weight="bold">│</tspan>
+        </text>
+        <text x="0" y="350" fill="#f1f5f9" font-family="monospace" font-size="14" font-weight="bold">
+          <tspan fill="#3b82f6" font-weight="bold">╰─</tspan>
+          <tspan fill="#94a3b8">────────────────────────────────────────────</tspan>
+          <tspan fill="#3b82f6" font-weight="bold">─╯</tspan>
+        </text>
+      </g>
+      
+      <!-- Final Prompt -->
+      <text x="0" y="385" fill="#94a3b8" font-family="monospace" font-size="15" opacity="0">
+        <animate attributeName="opacity" values="0;1" dur="0.5s" begin="4.0s" fill="freeze"/>
+        <tspan fill="#10b981">$</tspan>
+        <cursor x="25" y="-12" width="2" height="18" fill="#10b981">
+          <animate attributeName="opacity" values="1;0;1" dur="1s" begin="4.0s" repeatCount="indefinite"/>
+        </cursor>
+      </text>
+    </g>
+  </g>
+  
+  <!-- Command Badges (Floating Around Terminal) -->
+  <g transform="translate(50, 480)">
+    <rect width="150" height="30" rx="15" fill="#3b82f6" opacity="0.9">
+      <animateTransform attributeName="transform" type="translate" values="0,0 10,0 0,0" dur="3s" repeatCount="indefinite"/>
+    </rect>
+    <text x="75" y="20" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="12" font-weight="bold">
+      --help
+    </text>
+  </g>
+  
+  <g transform="translate(220, 480)">
+    <rect width="150" height="30" rx="15" fill="#10b981" opacity="0.9">
+      <animateTransform attributeName="transform" type="translate" values="0,0 -10,0 0,0" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="75" y="20" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="12" font-weight="bold">
+      run web -u &lt;url&gt;
+    </text>
+  </g>
+  
+  <g transform="translate(390, 480)">
+    <rect width="150" height="30" rx="15" fill="#f59e0b" opacity="0.9">
+      <animateTransform attributeName="transform" type="translate" values="0,0 10,0 0,0" dur="3s" begin="1s" repeatCount="indefinite"/>
+    </rect>
+    <text x="75" y="20" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="12" font-weight="bold">
+      interactive
+    </text>
+  </g>
+  
+  <g transform="translate(560, 480)">
+    <rect width="150" height="30" rx="15" fill="#8b5cf6" opacity="0.9">
+      <animateTransform attributeName="transform" type="translate" values="0,0 -10,0 0,0" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="75" y="20" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="12" font-weight="bold">
+      encrypt / decrypt
+    </text>
+  </g>
+  
+  <!-- Decorative Elements -->
+  <g opacity="0.5">
+    <circle cx="800" cy="80" r="50" fill="none" stroke="#3b82f6" stroke-width="2">
+      <animate attributeName="r" values="40;60;40" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="50" cy="450" r="40" fill="none" stroke="#10b981" stroke-width="2">
+      <animate attributeName="r" values="30;50;30" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Code Snippet Corner -->
+  <g transform="translate(620, 20)">
+    <rect width="200" height="60" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+    <text x="100" y="25" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="11">Quick Start:</text>
+    <text x="20" y="45" fill="#10b981" font-family="monospace" font-size="12">pip install</text>
+    <text x="120" y="45" fill="#60a5fa" font-family="monospace" font-size="12">elite-automation</text>
+  </g>
+</svg>

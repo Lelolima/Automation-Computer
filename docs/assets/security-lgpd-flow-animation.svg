@@ -1,0 +1,272 @@
+<!-- 
+  SVG Animado: Fluxo de Segurança e LGPD
+  Uso: Demonstrar conformidade, criptografia e governança de dados
+  Estilo: Security Flow, Compliance, Enterprise
+-->
+<svg width="900" height="500" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradientes -->
+    <linearGradient id="securityBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="lockGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="dataGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="lgpdGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0" />
+    </linearGradient>
+    
+    <!-- Filtros -->
+    <filter id="securityGlow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="securityShadow">
+      <feDropShadow dx="0" dy="6" stdDeviation="16" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="500" fill="url(#securityBg)"/>
+  
+  <!-- Animated Grid Pattern -->
+  <pattern id="securityGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+    <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.2"/>
+  </pattern>
+  <rect width="900" height="500" fill="url(#securityGrid)"/>
+  
+  <!-- Title -->
+  <text x="450" y="50" text-anchor="middle" fill="#f1f5f9" font-family="Arial, sans-serif" font-size="26" font-weight="bold">
+    Security & LGPD Compliance Flow
+  </text>
+  <text x="450" y="75" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="14">
+    AES-256 • bcrypt • JWT • Consent Management • Data Rights
+  </text>
+  
+  <!-- Flow Nodes -->
+  <g transform="translate(100, 120)">
+    
+    <!-- Node 1: Data Input -->
+    <g filter="url(#securityShadow)">
+      <rect width="140" height="100" rx="12" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+      <circle cx="70" cy="40" r="20" fill="none" stroke="url(#dataGradient)" stroke-width="3">
+        <animateTransform attributeName="transform" type="rotate" from="0 70 40" to="360 70 40" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <text x="70" y="47" text-anchor="middle" fill="#f59e0b" font-family="Arial" font-size="18" font-weight="bold">📊</text>
+      <text x="70" y="70" text-anchor="middle" fill="#f1f5f9" font-family="Arial" font-size="13" font-weight="bold">Data Input</text>
+      <text x="70" y="88" text-anchor="middle" fill="#f59e0b" font-family="monospace" font-size="11">User Data</text>
+    </g>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <g transform="translate(250, 155)">
+    <path d="M 0 0 L 80 0" stroke="url(#arrowGradient)" stroke-width="3" stroke-dasharray="5,5" fill="none">
+      <animate attributeName="stroke-dashoffset" values="10;0" dur="1s" repeatCount="indefinite"/>
+    </path>
+    <polygon points="80,0 70,-5 70,5" fill="#3b82f6">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" repeatCount="indefinite"/>
+    </polygon>
+  </g>
+  
+  <!-- Node 2: Encryption -->
+  <g transform="translate(340, 120)" filter="url(#securityShadow)">
+    <rect width="140" height="100" rx="12" fill="#1e293b" stroke="url(#lockGradient)" stroke-width="2"/>
+    <circle cx="70" cy="40" r="20" fill="none" stroke="url(#lockGradient)" stroke-width="3">
+      <animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="70" y="47" text-anchor="middle" fill="#10b981" font-family="Arial" font-size="18" font-weight="bold">🔐</text>
+    <text x="70" y="70" text-anchor="middle" fill="#f1f5f9" font-family="Arial" font-size="13" font-weight="bold">AES-256</text>
+    <text x="70" y="88" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="11">Encrypt</text>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <g transform="translate(490, 155)">
+    <path d="M 0 0 L 80 0" stroke="url(#arrowGradient)" stroke-width="3" stroke-dasharray="5,5" fill="none">
+      <animate attributeName="stroke-dashoffset" values="10;0" dur="1s" begin="0.2s" repeatCount="indefinite"/>
+    </path>
+    <polygon points="80,0 70,-5 70,5" fill="#3b82f6">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.2s" repeatCount="indefinite"/>
+    </polygon>
+  </g>
+  
+  <!-- Node 3: Authentication -->
+  <g transform="translate(580, 120)" filter="url(#securityShadow)">
+    <rect width="140" height="100" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <circle cx="70" cy="40" r="20" fill="none" stroke="#3b82f6" stroke-width="3">
+      <animateTransform attributeName="transform" type="rotate" from="360 70 40" to="0 70 40" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <text x="70" y="47" text-anchor="middle" fill="#3b82f6" font-family="Arial" font-size="18" font-weight="bold">🔑</text>
+    <text x="70" y="70" text-anchor="middle" fill="#f1f5f9" font-family="Arial" font-size="13" font-weight="bold">JWT Auth</text>
+    <text x="70" y="88" text-anchor="middle" fill="#3b82f6" font-family="monospace" font-size="11">bcrypt</text>
+  </g>
+  
+  <!-- Arrow 3 (downward) -->
+  <g transform="translate(645, 230)">
+    <path d="M 0 0 L 0 60" stroke="url(#arrowGradient)" stroke-width="3" stroke-dasharray="5,5" fill="none">
+      <animate attributeName="stroke-dashoffset" values="10;0" dur="1s" begin="0.4s" repeatCount="indefinite"/>
+    </path>
+    <polygon points="0,60 -5,50 5,50" fill="#3b82f6">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="1s" begin="0.4s" repeatCount="indefinite"/>
+    </polygon>
+  </g>
+  
+  <!-- Node 4: LGPD Compliance (Bottom Center) -->
+  <g transform="translate(380, 300)" filter="url(#securityShadow)">
+    <rect width="280" height="120" rx="16" fill="#1e293b" stroke="url(#lgpdGradient)" stroke-width="3"/>
+    
+    <!-- Shield Icon -->
+    <g transform="translate(40, 60)">
+      <path d="M 0 -25 L 20 -15 L 20 15 L 0 25 L -20 15 L -20 -15 Z" 
+            fill="none" stroke="url(#lgpdGradient)" stroke-width="3">
+        <animate attributeName="stroke-width" values="3;4;3" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <text x="0" y="8" text-anchor="middle" fill="#8b5cf6" font-family="Arial" font-size="20" font-weight="bold">✓</text>
+    </g>
+    
+    <!-- Text -->
+    <text x="140" y="45" fill="#f1f5f9" font-family="Arial" font-size="16" font-weight="bold">LGPD Compliance</text>
+    <text x="140" y="68" fill="#8b5cf6" font-family="monospace" font-size="12">• Consent Management</text>
+    <text x="140" y="88" fill="#8b5cf6" font-family="monospace" font-size="12">• Data Subject Rights</text>
+    <text x="140" y="108" fill="#8b5cf6" font-family="monospace" font-size="12">• Audit Trail Active</text>
+    
+    <!-- Animated Checkmarks -->
+    <g transform="translate(240, 60)">
+      <text x="0" y="0" fill="#10b981" font-size="16" opacity="0">
+        ✓
+        <animate attributeName="opacity" values="0;1;0" dur="3s" begin="0s" repeatCount="indefinite"/>
+      </text>
+      <text x="15" y="20" fill="#10b981" font-size="16" opacity="0">
+        ✓
+        <animate attributeName="opacity" values="0;1;0" dur="3s" begin="1s" repeatCount="indefinite"/>
+      </text>
+      <text x="30" y="40" fill="#10b981" font-size="16" opacity="0">
+        ✓
+        <animate attributeName="opacity" values="0;1;0" dur="3s" begin="2s" repeatCount="indefinite"/>
+      </text>
+    </g>
+  </g>
+  
+  <!-- Left Side: Security Features -->
+  <g transform="translate(50, 300)">
+    <rect width="280" height="160" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="2" opacity="0.9"/>
+    <text x="140" y="30" text-anchor="middle" fill="#3b82f6" font-family="Arial" font-size="16" font-weight="bold">🛡️ Security Features</text>
+    
+    <!-- Feature 1 -->
+    <g transform="translate(20, 50)">
+      <circle cx="10" cy="10" r="8" fill="#10b981">
+        <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="30" y="15" fill="#f1f5f9" font-family="monospace" font-size="13">AES-256-CBC Encryption</text>
+    </g>
+    
+    <!-- Feature 2 -->
+    <g transform="translate(20, 80)">
+      <circle cx="10" cy="10" r="8" fill="#10b981">
+        <animate attributeName="r" values="8;10;8" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+      </circle>
+      <text x="30" y="15" fill="#f1f5f9" font-family="monospace" font-size="13">PBKDF2 Key Derivation</text>
+    </g>
+    
+    <!-- Feature 3 -->
+    <g transform="translate(20, 110)">
+      <circle cx="10" cy="10" r="8" fill="#10b981">
+        <animate attributeName="r" values="8;10;8" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+      </circle>
+      <text x="30" y="15" fill="#f1f5f9" font-family="monospace" font-size="13">JWT Access + Refresh</text>
+    </g>
+    
+    <!-- Feature 4 -->
+    <g transform="translate(20, 140)">
+      <circle cx="10" cy="10" r="8" fill="#10b981">
+        <animate attributeName="r" values="8;10;8" dur="2s" begin="0.9s" repeatCount="indefinite"/>
+      </circle>
+      <text x="30" y="15" fill="#f1f5f9" font-family="monospace" font-size="13">bcrypt Password Hashing</text>
+    </g>
+  </g>
+  
+  <!-- Right Side: LGPD Articles -->
+  <g transform="translate(570, 300)">
+    <rect width="280" height="160" rx="12" fill="#1e293b" stroke="#8b5cf6" stroke-width="2" opacity="0.9"/>
+    <text x="140" y="30" text-anchor="middle" fill="#8b5cf6" font-family="Arial" font-size="16" font-weight="bold">📋 LGPD Articles</text>
+    
+    <!-- Article 1 -->
+    <g transform="translate(20, 50)">
+      <rect width="12" height="12" rx="2" fill="#8b5cf6">
+        <animateTransform attributeName="transform" type="rotate" values="0 6 6;360 6 6" dur="3s" repeatCount="indefinite"/>
+      </rect>
+      <text x="40" y="15" fill="#f1f5f9" font-family="monospace" font-size="13">Art. 7º - Legal Basis</text>
+    </g>
+    
+    <!-- Article 2 -->
+    <g transform="translate(20, 80)">
+      <rect width="12" height="12" rx="2" fill="#8b5cf6">
+        <animateTransform attributeName="transform" type="rotate" values="0 6 6;360 6 6" dur="3s" begin="0.3s" repeatCount="indefinite"/>
+      </rect>
+      <text x="40" y="15" fill="#f1f5f9" font-family="monospace" font-size="13">Art. 18 - Data Rights</text>
+    </g>
+    
+    <!-- Article 3 -->
+    <g transform="translate(20, 110)">
+      <rect width="12" height="12" rx="2" fill="#8b5cf6">
+        <animateTransform attributeName="transform" type="rotate" values="0 6 6;360 6 6" dur="3s" begin="0.6s" repeatCount="indefinite"/>
+      </rect>
+      <text x="40" y="15" fill="#f1f5f9" font-family="monospace" font-size="13">Art. 19 - Transparency</text>
+    </g>
+    
+    <!-- Article 4 -->
+    <g transform="translate(20, 140)">
+      <rect width="12" height="12" rx="2" fill="#8b5cf6">
+        <animateTransform attributeName="transform" type="rotate" values="0 6 6;360 6 6" dur="3s" begin="0.9s" repeatCount="indefinite"/>
+      </rect>
+      <text x="40" y="15" fill="#f1f5f9" font-family="monospace" font-size="13">Art. 46 - Security Measures</text>
+    </g>
+  </g>
+  
+  <!-- Bottom Badge -->
+  <g transform="translate(300, 470)">
+    <rect width="300" height="24" rx="12" fill="#10b981" filter="url(#securityGlow)">
+      <animateTransform attributeName="transform" type="scale" values="1;1.02;1" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    <text x="150" y="17" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="13" font-weight="bold">
+      ✓ Enterprise-Grade Security & Compliance
+    </text>
+  </g>
+  
+  <!-- Floating Particles -->
+  <g opacity="0.4">
+    <circle cx="100" cy="100" r="3" fill="#3b82f6">
+      <animate attributeName="cy" values="100;80;100" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="800" cy="150" r="4" fill="#10b981">
+      <animate attributeName="cy" values="150;130;150" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="850" cy="400" r="3" fill="#8b5cf6">
+      <animate attributeName="cy" values="400;380;400" dur="3.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="50" cy="450" r="4" fill="#f59e0b">
+      <animate attributeName="cy" values="450;430;450" dur="4.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="4.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>
