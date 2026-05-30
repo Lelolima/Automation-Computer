@@ -1,0 +1,205 @@
+<!-- 
+  SVG Animado: Health Check em Tempo Real
+  Uso: Demonstrar monitoramento e estabilidade do sistema
+  Estilo: Dashboard, Metrics, Professional
+-->
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradientes -->
+    <linearGradient id="bgGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="healthGood" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#34d399;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="healthWarning" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="pulseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0" />
+    </linearGradient>
+    
+    <!-- Filtros -->
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow2">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bgGradient2)"/>
+  
+  <!-- Animated Grid -->
+  <pattern id="grid2" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.2"/>
+  </pattern>
+  <rect width="800" height="450" fill="url(#grid2)"/>
+  
+  <!-- Title -->
+  <text x="400" y="50" text-anchor="middle" fill="#f1f5f9" font-family="Arial, sans-serif" font-size="24" font-weight="bold">
+    System Health Monitor
+  </text>
+  <text x="400" y="75" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="14">
+    Real-time status check • Elite Automation v2.0.0
+  </text>
+  
+  <!-- Status Cards Container -->
+  <g transform="translate(100, 100)">
+    
+    <!-- Card 1: Config -->
+    <g transform="translate(0, 0)" filter="url(#shadow2)">
+      <rect width="120" height="140" rx="12" fill="url(#cardGradient)" stroke="#475569" stroke-width="1.5"/>
+      <circle cx="60" cy="50" r="25" fill="none" stroke="url(#healthGood)" stroke-width="3">
+        <animateTransform attributeName="transform" type="rotate" from="0 60 50" to="360 60 50" dur="2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="60" y="57" text-anchor="middle" fill="#10b981" font-family="Arial" font-size="20" font-weight="bold">✓</text>
+      <text x="60" y="90" text-anchor="middle" fill="#f1f5f9" font-family="Arial" font-size="14" font-weight="bold">Config</text>
+      <text x="60" y="110" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="12">OK</text>
+      <!-- Pulse Effect -->
+      <circle cx="60" cy="50" r="25" fill="url(#pulseGradient)">
+        <animate attributeName="r" values="25;40;25" dur="1.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="1.5s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    
+    <!-- Card 2: Security -->
+    <g transform="translate(150, 0)" filter="url(#shadow2)">
+      <rect width="120" height="140" rx="12" fill="url(#cardGradient)" stroke="#475569" stroke-width="1.5"/>
+      <circle cx="60" cy="50" r="25" fill="none" stroke="url(#healthGood)" stroke-width="3">
+        <animateTransform attributeName="transform" type="rotate" from="0 60 50" to="360 60 50" dur="2s" begin="0.2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="60" y="57" text-anchor="middle" fill="#10b981" font-family="Arial" font-size="20" font-weight="bold">🔒</text>
+      <text x="60" y="90" text-anchor="middle" fill="#f1f5f9" font-family="Arial" font-size="14" font-weight="bold">Security</text>
+      <text x="60" y="110" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="12">AES-256</text>
+      <circle cx="60" cy="50" r="25" fill="url(#pulseGradient)">
+        <animate attributeName="r" values="25;40;25" dur="1.5s" begin="0.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="1.5s" begin="0.2s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    
+    <!-- Card 3: Web -->
+    <g transform="translate(300, 0)" filter="url(#shadow2)">
+      <rect width="120" height="140" rx="12" fill="url(#cardGradient)" stroke="#475569" stroke-width="1.5"/>
+      <circle cx="60" cy="50" r="25" fill="none" stroke="url(#healthGood)" stroke-width="3">
+        <animateTransform attributeName="transform" type="rotate" from="0 60 50" to="360 60 50" dur="2s" begin="0.4s" repeatCount="indefinite"/>
+      </circle>
+      <text x="60" y="57" text-anchor="middle" fill="#10b981" font-family="Arial" font-size="20" font-weight="bold">🌐</text>
+      <text x="60" y="90" text-anchor="middle" fill="#f1f5f9" font-family="Arial" font-size="14" font-weight="bold">Web</text>
+      <text x="60" y="110" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="12">Playwright</text>
+      <circle cx="60" cy="50" r="25" fill="url(#pulseGradient)">
+        <animate attributeName="r" values="25;40;25" dur="1.5s" begin="0.4s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="1.5s" begin="0.4s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    
+    <!-- Card 4: Desktop -->
+    <g transform="translate(450, 0)" filter="url(#shadow2)">
+      <rect width="120" height="140" rx="12" fill="url(#cardGradient)" stroke="#475569" stroke-width="1.5"/>
+      <circle cx="60" cy="50" r="25" fill="none" stroke="url(#healthWarning)" stroke-width="3" stroke-dasharray="5,5">
+        <animateTransform attributeName="transform" type="rotate" from="0 60 50" to="360 60 50" dur="3s" begin="0.6s" repeatCount="indefinite"/>
+      </circle>
+      <text x="60" y="57" text-anchor="middle" fill="#f59e0b" font-family="Arial" font-size="20" font-weight="bold">⚠</text>
+      <text x="60" y="90" text-anchor="middle" fill="#f1f5f9" font-family="Arial" font-size="14" font-weight="bold">Desktop</text>
+      <text x="60" y="110" text-anchor="middle" fill="#f59e0b" font-family="monospace" font-size="12">Headless</text>
+      <circle cx="60" cy="50" r="25" fill="url(#pulseGradient)">
+        <animate attributeName="r" values="25;40;25" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    
+    <!-- Card 5: LLM -->
+    <g transform="translate(0, 160)" filter="url(#shadow2)">
+      <rect width="120" height="140" rx="12" fill="url(#cardGradient)" stroke="#475569" stroke-width="1.5"/>
+      <circle cx="60" cy="50" r="25" fill="none" stroke="url(#healthGood)" stroke-width="3">
+        <animateTransform attributeName="transform" type="rotate" from="0 60 50" to="360 60 50" dur="2s" begin="0.8s" repeatCount="indefinite"/>
+      </circle>
+      <text x="60" y="57" text-anchor="middle" fill="#10b981" font-family="Arial" font-size="20" font-weight="bold">🤖</text>
+      <text x="60" y="90" text-anchor="middle" fill="#f1f5f9" font-family="Arial" font-size="14" font-weight="bold">LLM</text>
+      <text x="60" y="110" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="12">Ready</text>
+      <circle cx="60" cy="50" r="25" fill="url(#pulseGradient)">
+        <animate attributeName="r" values="25;40;25" dur="1.5s" begin="0.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="1.5s" begin="0.8s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    
+    <!-- Card 6: LGPD -->
+    <g transform="translate(150, 160)" filter="url(#shadow2)">
+      <rect width="120" height="140" rx="12" fill="url(#cardGradient)" stroke="#475569" stroke-width="1.5"/>
+      <circle cx="60" cy="50" r="25" fill="none" stroke="url(#healthGood)" stroke-width="3">
+        <animateTransform attributeName="transform" type="rotate" from="0 60 50" to="360 60 50" dur="2s" begin="1.0s" repeatCount="indefinite"/>
+      </circle>
+      <text x="60" y="57" text-anchor="middle" fill="#10b981" font-family="Arial" font-size="20" font-weight="bold">✓</text>
+      <text x="60" y="90" text-anchor="middle" fill="#f1f5f9" font-family="Arial" font-size="14" font-weight="bold">LGPD</text>
+      <text x="60" y="110" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="12">Compliant</text>
+      <circle cx="60" cy="50" r="25" fill="url(#pulseGradient)">
+        <animate attributeName="r" values="25;40;25" dur="1.5s" begin="1.0s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="1.5s" begin="1.0s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    
+    <!-- Card 7: Performance -->
+    <g transform="translate(300, 160)" filter="url(#shadow2)">
+      <rect width="120" height="140" rx="12" fill="url(#cardGradient)" stroke="#475569" stroke-width="1.5"/>
+      <circle cx="60" cy="50" r="25" fill="none" stroke="url(#healthGood)" stroke-width="3">
+        <animateTransform attributeName="transform" type="rotate" from="0 60 50" to="360 60 50" dur="2s" begin="1.2s" repeatCount="indefinite"/>
+      </circle>
+      <text x="60" y="57" text-anchor="middle" fill="#10b981" font-family="Arial" font-size="20" font-weight="bold">⚡</text>
+      <text x="60" y="90" text-anchor="middle" fill="#f1f5f9" font-family="Arial" font-size="14" font-weight="bold">Performance</text>
+      <text x="60" y="110" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="12">Optimized</text>
+      <circle cx="60" cy="50" r="25" fill="url(#pulseGradient)">
+        <animate attributeName="r" values="25;40;25" dur="1.5s" begin="1.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="1.5s" begin="1.2s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    
+    <!-- Card 8: Audit -->
+    <g transform="translate(450, 160)" filter="url(#shadow2)">
+      <rect width="120" height="140" rx="12" fill="url(#cardGradient)" stroke="#475569" stroke-width="1.5"/>
+      <circle cx="60" cy="50" r="25" fill="none" stroke="url(#healthGood)" stroke-width="3">
+        <animateTransform attributeName="transform" type="rotate" from="0 60 50" to="360 60 50" dur="2s" begin="1.4s" repeatCount="indefinite"/>
+      </circle>
+      <text x="60" y="57" text-anchor="middle" fill="#10b981" font-family="Arial" font-size="20" font-weight="bold">📋</text>
+      <text x="60" y="90" text-anchor="middle" fill="#f1f5f9" font-family="Arial" font-size="14" font-weight="bold">Audit</text>
+      <text x="60" y="110" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="12">Active</text>
+      <circle cx="60" cy="50" r="25" fill="url(#pulseGradient)">
+        <animate attributeName="r" values="25;40;25" dur="1.5s" begin="1.4s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="1.5s" begin="1.4s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+  </g>
+  
+  <!-- Live Indicator -->
+  <g transform="translate(680, 40)">
+    <circle cx="10" cy="10" r="8" fill="#10b981">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+    </circle>
+    <text x="30" y="15" fill="#10b981" font-family="monospace" font-size="14" font-weight="bold">LIVE</text>
+  </g>
+  
+  <!-- Footer Stats -->
+  <g transform="translate(100, 380)">
+    <rect width="600" height="50" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="30" y="30" fill="#94a3b8" font-family="monospace" font-size="12">Uptime:</text>
+    <text x="90" y="30" fill="#10b981" font-family="monospace" font-size="14" font-weight="bold">99.9%</text>
+    <text x="180" y="30" fill="#94a3b8" font-family="monospace" font-size="12">Tasks:</text>
+    <text x="230" y="30" fill="#60a5fa" font-family="monospace" font-size="14" font-weight="bold">1,247</text>
+    <text x="320" y="30" fill="#94a3b8" font-family="monospace" font-size="12">Avg Response:</text>
+    <text x="430" y="30" fill="#f59e0b" font-family="monospace" font-size="14" font-weight="bold">45ms</text>
+    <text x="520" y="30" fill="#94a3b8" font-family="monospace" font-size="12">Last Check:</text>
+    <text x="600" y="30" fill="#10b981" font-family="monospace" font-size="14" font-weight="bold">Now</text>
+  </g>
+</svg>

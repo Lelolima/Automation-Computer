@@ -18,35 +18,60 @@ Fornece funcionalidades para automação de aplicativos desktop, incluindo:
 
 import logging
 import os
+import sys
 import time
 from dataclasses import dataclass
 from enum import Enum, auto
 from pathlib import Path
 from typing import Any, Dict, List, NamedTuple, Optional, Tuple, Union
 
-import pyautogui
-import pygetwindow as gw
-import pytesseract
-from PIL import Image, ImageGrab
+# Importação condicional para suportar ambientes sem GUI
+try:
+    import pyautogui
+    PYAUTOGUI_AVAILABLE = True
+except (ImportError, NotImplementedError, KeyError):
+    pyautogui = None
+    PYAUTOGUI_AVAILABLE = False
+
+try:
+    import pygetwindow as gw
+    PYGETWINDOW_AVAILABLE = True
+except (ImportError, NotImplementedError, KeyError):
+    gw = None
+    PYGETWINDOW_AVAILABLE = False
+
+try:
+    import pytesseract
+    PYTESSERACT_AVAILABLE = True
+except (ImportError, NotImplementedError):
+    pytesseract = None
+    PYTESSERACT_AVAILABLE = False
+
+try:
+    from PIL import Image, ImageGrab
+    PIL_AVAILABLE = True
+except (ImportError, NotImplementedError):
+    Image = None
+    ImageGrab = None
+    PIL_AVAILABLE = False
 
 from src.config import settings
 
 # Configuração de logging
 logger = logging.getLogger(__name__)
 
-# RACIOCÍNIO: PyAutoGUI é a biblioteca principal para controle de UI (mouse e teclado).
-# PyGetWindow é usado para interagir com janelas de aplicativos (obter título, tamanho, ativar, etc.).
-# Pytesseract é usado para OCR (Reconhecimento Óptico de Caracteres) para extrair texto de imagens.
-# PIL (Pillow) é usado para manipulação de imagens, como captura de tela.
-
-# Configura o PyAutoGUI
-# RACIOCÍNIO: É crucial ter um mecanismo de segurança para interromper a automação.
-# FAILSAFE permite que o usuário mova o mouse para um canto (superior esquerdo) para parar o script PyAutoGUI.
-pyautogui.FAILSAFE = True
-# RACIOCÍNIO: Uma pequena pausa entre as ações do PyAutoGUI pode aumentar a confiabilidade da automação,
-# permitindo que a UI tenha tempo para responder. 0.1 segundos é um valor padrão razoável.
-# DECISÃO: Definir um PAUSE global para PyAutoGUI. Pode ser sobrescrito por parâmetros em chamadas específicas se necessário.
-pyautogui.PAUSE = 0.1
+# Configura o PyAutoGUI apenas se disponível
+if PYAUTOGUI_AVAILABLE:
+    # RACIOCÍNIO: É crucial ter um mecanismo de segurança para interromper a automação.
+    # FAILSAFE permite que o usuário mova o mouse para um canto (superior esquerdo) para parar o script PyAutoGUI.
+    pyautogui.FAILSAFE = True
+    # RACIOCÍNIO: Uma pequena pausa entre as ações do PyAutoGUI pode aumentar a confiabilidade da automação,
+    # permitindo que a UI tenha tempo para responder. 0.1 segundos é um valor padrão razoável.
+    # DECISÃO: Definir um PAUSE global para PyAutoGUI. Pode ser sobrescrito por parâmetros em chamadas específicas se necessário.
+    pyautogui.PAUSE = 0.1
+    logger.info("PyAutoGUI inicializado com FAILSAFE=True e PAUSE=0.1s")
+else:
+    logger.warning("PyAutoGUI não disponível - automação desktop limitada")
 
 # ESTRATÉGIA: Definir uma exceção personalizada para erros específicos de automação de desktop.
 # Isso permite um tratamento de erro mais granular no código que utiliza este módulo.
