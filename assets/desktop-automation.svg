@@ -1,0 +1,143 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f3460;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="btnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e94560;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff6b6b;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Monitor Screen -->
+  <rect x="50" y="50" width="500" height="350" rx="10" fill="url(#screenGrad)" stroke="#0f3460" stroke-width="3"/>
+
+  <!-- Window Header -->
+  <rect x="60" y="60" width="480" height="30" rx="5" fill="#0f3460"/>
+  <circle cx="80" cy="75" r="5" fill="#ff5f56"/>
+  <circle cx="100" cy="75" r="5" fill="#ffbd2e"/>
+  <circle cx="120" cy="75" r="5" fill="#27ca40"/>
+  <text x="150" y="80" fill="#ffffff" font-family="Segoe UI, Arial" font-size="12" opacity="0.8">Automation-Computer</text>
+
+  <!-- Animated Cursor -->
+  <g id="cursor">
+    <path d="M200 150 L200 180 L220 180 Z" fill="#ffffff" filter="url(#glow)">
+      <animate attributeName="d" values="M200 150 L200 180 L220 180 Z; M250 200 L250 230 L270 230 Z; M300 250 L300 280 L320 280 Z; M200 150 L200 180 L220 180 Z" dur="4s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Click Animation -->
+  <circle cx="250" cy="200" r="0" fill="none" stroke="#e94560" stroke-width="2">
+    <animate attributeName="r" values="0; 20; 0" dur="0.3s" begin="1s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1; 0" dur="0.3s" begin="1s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Buttons being clicked -->
+  <rect x="230" y="190" width="80" height="30" rx="5" fill="url(#btnGrad)">
+    <animate attributeName="fill" values="url(#btnGrad); #ff6b6b; url(#btnGrad)" dur="0.3s" begin="1s" repeatCount="indefinite"/>
+  </rect>
+  <text x="250" y="210" fill="#ffffff" font-family="Arial" font-size="11" text-anchor="middle">Executar</text>
+
+  <rect x="230" y="240" width="80" height="30" rx="5" fill="#0f3460" stroke="#4a4a6a" stroke-width="1"/>
+  <text x="270" y="260" fill="#8888aa" font-family="Arial" font-size="11" text-anchor="middle">Configurar</text>
+
+  <!-- Terminal Output -->
+  <rect x="60" y="300" width="480" height="90" rx="5" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="70" y="320" fill="#00ff88" font-family="Consolas, monospace" font-size="11">
+    <animate attributeName="opacity" values="0;1;1" dur="2s" repeatCount="indefinite"/>
+    [INFO] DesktopController inicializado
+  </text>
+  <text x="70" y="340" fill="#00ff88" font-family="Consolas, monospace" font-size="11">
+    <animate attributeName="opacity" values="0;0;1;1" dur="2s" repeatCount="indefinite"/>
+    [INFO] Aplicação iniciada: notepad.exe
+  </text>
+  <text x="70" y="360" fill="#00aaff" font-family="Consolas, monospace" font-size="11">
+    <animate attributeName="opacity" values="0;0;0;1;1" dur="2s" repeatCount="indefinite"/>
+    [INFO] Texto digitado: Olá, Automation!
+  </text>
+  <!-- Blinking cursor -->
+  <rect x="240" y="365" width="8" height="12" fill="#00aaff">
+    <animate attributeName="opacity" values="1;0;1;0" dur="1s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Activity Indicators -->
+  <g transform="translate(600, 100)">
+    <circle cx="40" cy="40" r="35" fill="none" stroke="#30363d" stroke-width="4"/>
+    <circle cx="40" cy="40" r="35" fill="none" stroke="#e94560" stroke-width="4" stroke-dasharray="220" stroke-dashoffset="220">
+      <animate attributeName="stroke-dashoffset" values="220;55;220" dur="3s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 40 40" to="360 40 40" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <text x="40" y="45" fill="#ffffff" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">85%</text>
+    <text x="40" y="70" fill="#8888aa" font-family="Arial" font-size="11" text-anchor="middle">Automação</text>
+  </g>
+
+  <!-- Task Completed Counter -->
+  <g transform="translate(600, 220)">
+    <rect x="0" y="0" width="120" height="50" rx="8" fill="#1a1a2e" stroke="#27ca40" stroke-width="2"/>
+    <text x="60" y="30" fill="#27ca40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold">
+      <animate attributeName="textContent" values="0;1;2;3;4;5;6;7;8;9;10;11;12" dur="6s" repeatCount="indefinite"/>
+    </text>
+    <text x="60" y="45" fill="#27ca40" font-family="Arial" font-size="10" text-anchor="middle">Tarefas</text>
+  </g>
+
+  <!-- Flow Animation -->
+  <g transform="translate(600, 320)">
+    <line x1="0" y1="25" x2="150" y2="25" stroke="#30363d" stroke-width="2"/>
+    <circle cx="0" cy="25" r="8" fill="#0f3460" stroke="#4a4a6a" stroke-width="2"/>
+    <circle cx="75" cy="25" r="8" fill="#0f3460" stroke="#4a4a6a" stroke-width="2"/>
+    <circle cx="150" cy="25" r="8" fill="#0f3460" stroke="#4a4a6a" stroke-width="2"/>
+
+    <circle cx="0" cy="25" r="4" fill="#e94560">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="75" cy="25" r="4" fill="#e94560">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="150" cy="25" r="4" fill="#e94560">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+
+    <text x="0" y="50" fill="#8888aa" font-family="Arial" font-size="9" text-anchor="middle">Input</text>
+    <text x="75" y="50" fill="#8888aa" font-family="Arial" font-size="9" text-anchor="middle">Process</text>
+    <text x="150" y="50" fill="#8888aa" font-family="Arial" font-size="9" text-anchor="middle">Output</text>
+  </g>
+
+  <!-- Python Logo with animation -->
+  <g transform="translate(55, 420)">
+    <text x="0" y="0" fill="#3776ab" font-family="Arial" font-size="14" font-weight="bold">Python</text>
+    <circle cx="65" cy="-15" r="10" fill="#3776ab" opacity="0.2">
+      <animate attributeName="r" values="10;15;10" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="65" cy="-15" r="6" fill="#ffd343">
+      <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Playwright Logo -->
+  <g transform="translate(150, 420)">
+    <text x="0" y="0" fill="#2eada6" font-family="Arial" font-size="14" font-weight="bold">Playwright</text>
+    <circle cx="75" cy="-15" r="10" fill="#2eada6" opacity="0.2">
+      <animate attributeName="r" values="10;15;10" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- pywinauto Logo -->
+  <g transform="translate(270, 420)">
+    <text x="0" y="0" fill="#4a4a6a" font-family="Arial" font-size="14" font-weight="bold">pywinauto</text>
+  </g>
+</svg>

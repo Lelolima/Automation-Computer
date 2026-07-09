@@ -1,0 +1,39 @@
+# Core dependencies
+pywinauto>=0.6.8
+pynput>=1.7.6
+playwright>=1.40.0
+opencv-python>=4.8.0
+numpy>=1.24.0
+ Pillow>=10.0.0
+pytesseract>=0.3.10
+mss>=9.0.1
+
+# AI/ML
+anthropic>=0.18.0
+openai>=1.10.0
+ollama>=0.1.6
+transformers>=4.36.0
+torch>=2.1.0
+mediapipe>=0.10.0
+
+# UI/CLI
+typer>=0.9.0
+rich>=13.7.0
+questionary>=2.0.1
+
+# Web dashboard
+fastapi>=0.109.0
+uvicorn>=0.25.0
+python-multipart>=0.0.6
+
+# Security
+cryptography>=42.0.0
+bcrypt>=4.1.2
+python-dotenv>=1.0.0
+
+# Utils
+pyyaml>=6.0.1
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+aiofiles>=23.2.1
+httpx>=0.26.0

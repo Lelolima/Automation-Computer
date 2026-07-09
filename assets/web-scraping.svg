@@ -1,0 +1,158 @@
+<svg width="800" height="450" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="webBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="browserGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d2d44;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="elementGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4aa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00ff88;stop-opacity:1" />
+    </linearGradient>
+    <filter id="greenGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#webBg)"/>
+
+  <!-- Browser Window -->
+  <rect x="30" y="30" width="740" height="320" rx="8" fill="url(#browserGrad)" stroke="#3d3d5c" stroke-width="2"/>
+
+  <!-- Browser Header -->
+  <rect x="30" y="30" width="740" height="40" rx="8" fill="#2d2d44"/>
+  <rect x="30" y="55" width="740" height="2" fill="#1a1a2e"/>
+
+  <!-- Traffic Lights -->
+  <circle cx="50" cy="50" r="6" fill="#ff5f56"/>
+  <circle cx="70" cy="50" r="6" fill="#ffbd2e"/>
+  <circle cx="90" cy="50" r="6" fill="#27ca40"/>
+
+  <!-- URL Bar -->
+  <rect x="130" y="40" width="500" height="20" rx="4" fill="#1a1a2e"/>
+  <text x="140" y="54" fill="#8888aa" font-family="Consolas, monospace" font-size="10">https://example.com/dashboard</text>
+
+  <!-- Refresh Icon -->
+  <path d="M650 50 A10 10 0 1 1 655 45" stroke="#8888aa" stroke-width="2" fill="none">
+    <animateTransform attributeName="transform" type="rotate" from="0 655 50" to="360 655 50" dur="4s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Web Page Content -->
+  <rect x="50" y="85" width="700" height="250" rx="4" fill="#0f0f1a"/>
+
+  <!-- Website Header -->
+  <rect x="60" y="95" width="680" height="40" rx="4" fill="#1a1a2e"/>
+  <text x="80" y="120" fill="#ffffff" font-family="Arial" font-size="16" font-weight="bold">Website Alvo</text>
+
+  <!-- Navigation -->
+  <g transform="translate(80, 150)">
+    <rect x="0" y="0" width="80" height="25" rx="4" fill="#2d2d44"/>
+    <text x="40" y="17" fill="#aaaaaa" font-family="Arial" font-size="11" text-anchor="middle">Home</text>
+
+    <rect x="100" y="0" width="80" height="25" rx="4" fill="#2d2d44"/>
+    <text x="140" y="17" fill="#aaaaaa" font-family="Arial" font-size="11" text-anchor="middle">Products</text>
+
+    <rect x="200" y="0" width="80" height="25" rx="4" fill="#2d2d44"/>
+    <text x="240" y="17" fill="#aaaaaa" font-family="Arial" font-size="11" text-anchor="middle">About</text>
+
+    <rect x="300" y="0" width="80" height="25" rx="4" fill="#2d2d44"/>
+    <text x="340" y="17" fill="#aaaaaa" font-family="Arial" font-size="11" text-anchor="middle">Contact</text>
+  </g>
+
+  <!-- Data Table being scraped -->
+  <rect x="60" y="190" width="680" height="130" rx="4" fill="#141428"/>
+
+  <!-- Table Header -->
+  <rect x="60" y="190" width="680" height="30" fill="#1a1a2e"/>
+  <text x="80" y="210" fill="#00d4aa" font-family="Arial" font-size="11" font-weight="bold">ID</text>
+  <text x="180" y="210" fill="#00d4aa" font-family="Arial" font-size="11" font-weight="bold">Produto</text>
+  <text x="380" y="210" fill="#00d4aa" font-family="Arial" font-size="11" font-weight="bold">Preço</text>
+  <text x="540" y="210" fill="#00d4aa" font-family="Arial" font-size="11" font-weight="bold">Status</text>
+
+  <!-- Table Rows with animation -->
+  <g id="row1">
+    <rect x="60" y="220" width="680" height="25" fill="none" stroke="url(#elementGrad)" stroke-width="0">
+      <animate attributeName="stroke-width" values="0;2;0" dur="3s" begin="0s" repeatCount="indefinite"/>
+    </rect>
+    <text x="80" y="238" fill="#ffffff" font-family="Consolas" font-size="10">001</text>
+    <text x="180" y="238" fill="#cccccc" font-family="Arial" font-size="10">Notebook Dell</text>
+    <text x="380" y="238" fill="#00ff88" font-family="Consolas" font-size="10">R$ 4.599,00</text>
+    <rect x="540" y="225" width="60" height="15" rx="3" fill="#27ca40"/>
+    <text x="570" y="237" fill="#ffffff" font-family="Arial" font-size="9" text-anchor="middle">Disponível</text>
+  </g>
+
+  <g id="row2">
+    <rect x="60" y="245" width="680" height="25" fill="none" stroke="url(#elementGrad)" stroke-width="0">
+      <animate attributeName="stroke-width" values="0;2;0" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="80" y="263" fill="#ffffff" font-family="Consolas" font-size="10">002</text>
+    <text x="180" y="263" fill="#cccccc" font-family="Arial" font-size="10">Mouse Logitech</text>
+    <text x="380" y="263" fill="#00ff88" font-family="Consolas" font-size="10">R$ 149,90</text>
+    <rect x="540" y="250" width="60" height="15" rx="3" fill="#27ca40"/>
+    <text x="570" y="262" fill="#ffffff" font-family="Arial" font-size="9" text-anchor="middle">Disponível</text>
+  </g>
+
+  <g id="row3">
+    <rect x="60" y="270" width="680" height="25" fill="none" stroke="url(#elementGrad)" stroke-width="0">
+      <animate attributeName="stroke-width" values="0;2;0" dur="3s" begin="1s" repeatCount="indefinite"/>
+    </rect>
+    <text x="80" y="288" fill="#ffffff" font-family="Consolas" font-size="10">003</text>
+    <text x="180" y="288" fill="#cccccc" font-family="Arial" font-size="10">Teclado Mecânico</text>
+    <text x="380" y="288" fill="#00ff88" font-family="Consolas" font-size="10">R$ 399,00</text>
+    <rect x="540" y="275" width="60" height="15" rx="3" fill="#ffbd2e"/>
+    <text x="570" y="287" fill="#ffffff" font-family="Arial" font-size="9" text-anchor="middle">Baixo</text>
+  </g>
+
+  <g id="row4">
+    <rect x="60" y="295" width="680" height="25" fill="none" stroke="url(#elementGrad)" stroke-width="0">
+      <animate attributeName="stroke-width" values="0;2;0" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="80" y="313" fill="#ffffff" font-family="Consolas" font-size="10">004</text>
+    <text x="180" y="313" fill="#cccccc" font-family="Arial" font-size="10">Monitor LG 27"</text>
+    <text x="380" y="313" fill="#00ff88" font-family="Consolas" font-size="10">R$ 1.899,00</text>
+    <rect x="540" y="300" width="60" height="15" rx="3" fill="#ff5f56"/>
+    <text x="570" y="312" fill="#ffffff" font-family="Arial" font-size="9" text-anchor="middle">Esgotado</text>
+  </g>
+
+  <!-- Scanning Line Animation -->
+  <line x1="60" y1="220" x2="740" y2="220" stroke="#00ff88" stroke-width="2" opacity="0.5">
+    <animate attributeName="y1" values="220;320;220" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="y2" values="220;320;220" dur="4s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- Console Output -->
+  <rect x="30" y="360" width="740" height="80" rx="4" fill="#0d1117" stroke="#30363d" stroke-width="2"/>
+  <text x="40" y="380" fill="#00ff88" font-family="Consolas" font-size="10">
+    <animate attributeName="opacity" values="0;1;1" dur="1s" repeatCount="indefinite"/>
+    [INFO] Navegado para: https://example.com/dashboard
+  </text>
+  <text x="40" y="398" fill="#00aaff" font-family="Consolas" font-size="10">
+    <animate attributeName="opacity" values="0;0;1;1" dur="1.5s" repeatCount="indefinite"/>
+    [SCRAPER] Extraindo dados da tabela...
+  </text>
+  <text x="40" y="416" fill="#ffbd2e" font-family="Consolas" font-size="10">
+    <animate attributeName="opacity" values="0;0;0;1;1" dur="2s" repeatCount="indefinite"/>
+    [DATA] 4 elementos extraídos → dados.json
+  </text>
+  <rect x="200" y="420" width="10" height="12" fill="#ffbd2e">
+    <animate attributeName="opacity" values="1;0;1;0" dur="0.8s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Status Badge -->
+  <g transform="translate(650, 370)">
+    <rect x="0" y="0" width="100" height="50" rx="8" fill="#1a1a2e" stroke="#00d4aa" stroke-width="2"/>
+    <text x="50" y="28" fill="#00d4aa" font-family="Arial" font-size="11" text-anchor="middle" font-weight="bold">EXTRAI</text>
+    <text x="50" y="42" fill="#00ff88" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">
+      <animate attributeName="textContent" values="1;2;3;4;5;6;7;8;9;10;11;12;13;14;15" dur="8s" repeatCount="indefinite"/>
+    </text>
+    <text x="50" y="42" fill="#ffffff" font-family="Arial" font-size="10" text-anchor="middle" dx="20">items</text>
+  </g>
+</svg>
