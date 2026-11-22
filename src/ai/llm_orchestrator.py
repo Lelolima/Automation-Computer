@@ -30,7 +30,7 @@ class LLMOrchestrator:
         self,
         primary_provider: str = "anthropic",
         fallback_providers: Optional[List[str]] = None,
-        local_model: Optional[str] = None
+        local_model: Optional[str] = None,
     ):
         """
         Inicializa o orquestrador.
@@ -51,6 +51,7 @@ class LLMOrchestrator:
         """Obtém cliente Anthropic/Claude."""
         try:
             from anthropic import Anthropic
+
             api_key = os.getenv("ANTHROPIC_API_KEY")
             if not api_key:
                 raise ValueError("ANTHROPIC_API_KEY não definida")
@@ -66,6 +67,7 @@ class LLMOrchestrator:
         """Obtém cliente OpenAI."""
         try:
             from openai import OpenAI
+
             api_key = os.getenv("OPENAI_API_KEY")
             if not api_key:
                 raise ValueError("OPENAI_API_KEY não definida")
@@ -81,6 +83,7 @@ class LLMOrchestrator:
         """Obtém cliente Ollama (local)."""
         try:
             import ollama
+
             # Testa conexão
             ollama.list()
             return ollama
@@ -103,10 +106,7 @@ class LLMOrchestrator:
             raise ValueError(f"Provider desconhecido: {provider}")
 
     async def generate_plan(
-        self,
-        task: str,
-        context: Optional[str] = None,
-        max_steps: int = 10
+        self, task: str, context: Optional[str] = None, max_steps: int = 10
     ) -> List[Dict[str, Any]]:
         """
         Gera um plano de execução para uma tarefa.
@@ -135,11 +135,7 @@ class LLMOrchestrator:
         raise RuntimeError("Todos os providers falharam ao gerar plano")
 
     async def _generate_plan_with_provider(
-        self,
-        provider: str,
-        task: str,
-        context: Optional[str],
-        max_steps: int
+        self, provider: str, task: str, context: Optional[str], max_steps: int
     ) -> List[Dict[str, Any]]:
         """Gera plano usando um provider específico."""
         prompt = f"""
@@ -155,26 +151,26 @@ Formato JSON: {{"steps": [{{"action": "...", "description": "..."}}]}}
             response = client.messages.create(
                 model=ANTHROPIC_MODEL,
                 max_tokens=4096,
-                messages=[{"role": "user", "content": prompt}]
+                messages=[{"role": "user", "content": prompt}],
             )
-            # Parse da resposta (simplificado)
-            return self._parse_plan_response(response.content)
+            # `response.content` é uma lista de blocos; antes a lista inteira era
+            # passada ao parser, que nunca encontrava o JSON do plano.
+            text = "".join(getattr(block, "text", "") for block in response.content)
+            return self._parse_plan_response(text)
 
         elif provider == "openai":
             client = self._get_client(provider)
             response = client.chat.completions.create(
-                model=OPENAI_MODEL,
-                messages=[{"role": "user", "content": prompt}]
+                model=OPENAI_MODEL, messages=[{"role": "user", "content": prompt}]
             )
             return self._parse_plan_response(response.choices[0].message.content)
 
         elif provider == "ollama":
             client = self._get_client(provider)
             response = client.chat(
-                model=self.local_model,
-                messages=[{"role": "user", "content": prompt}]
+                model=self.local_model, messages=[{"role": "user", "content": prompt}]
             )
-            return self._parse_plan_response(response['message']['content'])
+            return self._parse_plan_response(response["message"]["content"])
 
         return []
 
@@ -194,10 +190,7 @@ Formato JSON: {{"steps": [{{"action": "...", "description": "..."}}]}}
         return [{"action": "execute", "description": content[:500]}]
 
     async def chat(
-        self,
-        message: str,
-        system: Optional[str] = None,
-        conversation: Optional[List[Dict]] = None
+        self, message: str, system: Optional[str] = None, conversation: Optional[List[Dict]] = None
     ) -> str:
         """
         Chat genérico com LLM.
@@ -222,11 +215,7 @@ Formato JSON: {{"steps": [{{"action": "...", "description": "..."}}]}}
         raise RuntimeError("Todos os providers falharam")
 
     async def _chat_with_provider(
-        self,
-        provider: str,
-        message: str,
-        system: Optional[str],
-        conversation: Optional[List[Dict]]
+        self, provider: str, message: str, system: Optional[str], conversation: Optional[List[Dict]]
     ) -> str:
         """Chat usando provider específico."""
         messages = []
@@ -249,27 +238,18 @@ Formato JSON: {{"steps": [{{"action": "...", "description": "..."}}]}}
             if system:
                 kwargs["system"] = system
             response = client.messages.create(
-                model=ANTHROPIC_MODEL,
-                max_tokens=4096,
-                messages=messages,
-                **kwargs
+                model=ANTHROPIC_MODEL, max_tokens=4096, messages=messages, **kwargs
             )
             return response.content[0].text
 
         elif provider == "openai":
             client = self._get_client(provider)
-            response = client.chat.completions.create(
-                model=OPENAI_MODEL,
-                messages=messages
-            )
+            response = client.chat.completions.create(model=OPENAI_MODEL, messages=messages)
             return response.choices[0].message.content
 
         elif provider == "ollama":
             client = self._get_client(provider)
-            response = client.chat(
-                model=self.local_model,
-                messages=messages
-            )
-            return response['message']['content']
+            response = client.chat(model=self.local_model, messages=messages)
+            return response["message"]["content"]
 
         return ""
