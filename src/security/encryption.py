@@ -35,21 +35,21 @@ class EncryptionService:
 
     def save_key(self, path: str) -> None:
         """Salva a chave em um arquivo."""
-        with open(path, 'wb') as f:
+        with open(path, "wb") as f:
             f.write(self.key)
         logger.info(f"Chave salva em: {path}")
 
     @classmethod
     def load_key(cls, path: str) -> "EncryptionService":
         """Carrega chave de um arquivo."""
-        with open(path, 'rb') as f:
+        with open(path, "rb") as f:
             key = f.read()
         return cls(key=key)
 
     def encrypt(self, data: str) -> bytes:
         """Criptografa uma string."""
         try:
-            return self.cipher.encrypt(data.encode('utf-8'))
+            return self.cipher.encrypt(data.encode("utf-8"))
         except Exception as e:
             logger.error(f"Erro ao criptografar: {e}")
             raise
@@ -57,7 +57,7 @@ class EncryptionService:
     def decrypt(self, encrypted: bytes) -> str:
         """Descriptografa dados."""
         try:
-            return self.cipher.decrypt(encrypted).decode('utf-8')
+            return self.cipher.decrypt(encrypted).decode("utf-8")
         except Exception as e:
             logger.error(f"Erro ao descriptografar: {e}")
             raise
@@ -92,8 +92,8 @@ class PasswordService:
         """
         try:
             salt = bcrypt.gensalt(rounds=rounds)
-            hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
-            return hashed.decode('utf-8')
+            hashed = bcrypt.hashpw(password.encode("utf-8"), salt)
+            return hashed.decode("utf-8")
         except Exception as e:
             logger.error(f"Erro ao hashear senha: {e}")
             raise
@@ -111,7 +111,7 @@ class PasswordService:
             True se válido
         """
         try:
-            return bcrypt.checkpw(password.encode('utf-8'), hashed.encode('utf-8'))
+            return bcrypt.checkpw(password.encode("utf-8"), hashed.encode("utf-8"))
         except Exception as e:
             logger.error(f"Erro ao verificar senha: {e}")
             return False
@@ -120,11 +120,7 @@ class PasswordService:
 class RateLimiter:
     """Rate limiter para prevenir abuso acidental."""
 
-    def __init__(
-        self,
-        requests_per_minute: int = 60,
-        burst: int = 10
-    ):
+    def __init__(self, requests_per_minute: int = 60, burst: int = 10):
         """
         Inicializa o rate limiter.
 
@@ -198,7 +194,7 @@ class Sandbox:
         self,
         allowed_paths: Optional[list] = None,
         allowed_domains: Optional[list] = None,
-        max_memory_mb: int = 512
+        max_memory_mb: int = 512,
     ):
         """
         Inicializa o sandbox.
@@ -232,7 +228,10 @@ class Sandbox:
         """Verifica se caminho é permitido."""
         path_obj = Path(path).resolve()
         for allowed in self.allowed_paths:
-            if str(path_obj).startswith(str(Path(allowed).resolve())):
+            allowed_obj = Path(allowed).resolve()
+            # Compara por componentes (antes: startswith de string, que aceitava
+            # "/dados_evil" para "/dados").
+            if path_obj == allowed_obj or allowed_obj in path_obj.parents:
                 return True
         logger.warning(f"Caminho não permitido: {path}")
         return False
@@ -246,12 +245,15 @@ class Sandbox:
         """
         try:
             from urllib.parse import urlparse
+
             parsed = urlparse(url)
-            domain = parsed.netloc.split(':')[0]  # Remove porta se presente
+            # hostname remove porta e credenciais ("user@host") e normaliza caixa
+            domain = (parsed.hostname or "").lower()
 
             for allowed in self.allowed_domains:
                 # Matching exato ou subdomínio
-                if domain == allowed or domain.endswith('.' + allowed):
+                allowed = allowed.lower()
+                if domain == allowed or domain.endswith("." + allowed):
                     return True
 
             logger.warning(f"Domínio não permitido: {url} (domain={domain})")
@@ -280,7 +282,7 @@ class Auditor:
         action: str,
         agent: str,
         details: Optional[Dict[str, Any]] = None,
-        success: bool = True
+        success: bool = True,
     ) -> None:
         """
         Loga uma ação.
@@ -296,7 +298,7 @@ class Auditor:
             "action": action,
             "agent": agent,
             "details": details or {},
-            "success": success
+            "success": success,
         }
         self.logs.append(entry)
         logger.info(f"Ação auditada: {action} por {agent}")
@@ -306,12 +308,12 @@ class Auditor:
         try:
             existing = []
             if self.log_path.exists():
-                with open(self.log_path, 'r') as f:
+                with open(self.log_path, "r") as f:
                     existing = json.load(f)
 
             existing.extend(self.logs)
 
-            with open(self.log_path, 'w') as f:
+            with open(self.log_path, "w") as f:
                 json.dump(existing, f, indent=2)
 
             self.logs.clear()
@@ -321,10 +323,7 @@ class Auditor:
             raise
 
     def get_logs(
-        self,
-        agent: Optional[str] = None,
-        action: Optional[str] = None,
-        limit: int = 100
+        self, agent: Optional[str] = None, action: Optional[str] = None, limit: int = 100
     ) -> list:
         """
         Obtém logs com filtro.
@@ -339,7 +338,7 @@ class Auditor:
         """
         filtered = self.logs
         if agent:
-            filtered = [l for l in filtered if l.get('agent') == agent]
+            filtered = [l for l in filtered if l.get("agent") == agent]
         if action:
-            filtered = [l for l in filtered if l.get('action') == action]
+            filtered = [l for l in filtered if l.get("action") == action]
         return filtered[-limit:]
