@@ -17,8 +17,7 @@ async def main():
 
     # Inicializar orquestrador
     llm = LLMOrchestrator(
-        primary_provider="ollama",  # Fallback local primeiro
-        fallback_providers=["ollama"]
+        primary_provider="ollama", fallback_providers=["ollama"]  # Fallback local primeiro
     )
 
     # Tarefa em linguagem natural
@@ -43,9 +42,7 @@ async def main():
 
         # Exemplo de chat
         print("\n Perguntando ao LLM...")
-        resposta = await llm.chat(
-            "Qual a melhor forma de fazer web scraping em Python?"
-        )
+        resposta = await llm.chat("Qual a melhor forma de fazer web scraping em Python?")
         print(f"\n Resposta do LLM:\n {resposta[:300]}...")
 
     except Exception as e:
