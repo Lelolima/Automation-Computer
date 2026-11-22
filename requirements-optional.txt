@@ -1,0 +1,22 @@
+# Dependências listadas originalmente em requirements.txt, mas que NÃO são
+# importadas por nenhum módulo em src/ hoje (visão computacional, ML local,
+# dashboard web planejado). Foram movidas para cá para não pesar a instalação;
+# instale se for desenvolver esses recursos: pip install -r requirements-optional.txt
+
+opencv-python>=4.8.0
+numpy>=1.24.0
+Pillow>=10.0.0
+pytesseract>=0.3.10
+mss>=9.0.1
+transformers>=4.36.0
+torch>=2.1.0
+mediapipe>=0.10.0
+questionary>=2.0.1
+fastapi>=0.109.0
+uvicorn>=0.25.0
+python-multipart>=0.0.6
+pyyaml>=6.0.1
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+aiofiles>=23.2.1
+httpx>=0.26.0

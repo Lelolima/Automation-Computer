@@ -16,12 +16,7 @@ logger = logging.getLogger(__name__)
 class WebAutomation:
     """Automação web assíncrona usando Playwright."""
 
-    def __init__(
-        self,
-        headless: bool = True,
-        browser_type: str = "chromium",
-        slow_mo: int = 0
-    ):
+    def __init__(self, headless: bool = True, browser_type: str = "chromium", slow_mo: int = 0):
         """
         Inicializa a automação web.
 
@@ -55,13 +50,12 @@ class WebAutomation:
 
             browser_launcher = getattr(self.playwright, self.browser_type)
             self.browser = await browser_launcher.launch(
-                headless=self.headless,
-                slow_mo=self.slow_mo
+                headless=self.headless, slow_mo=self.slow_mo
             )
 
             self.context = await self.browser.new_context(
                 viewport={"width": 1920, "height": 1080},
-                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             )
 
             self.page = await self.context.new_page()
@@ -193,7 +187,9 @@ class WebAutomation:
             logger.error(f"Erro ao extrair dados: {e}")
             raise
 
-    async def extract_all(self, selector: str, attribute: Optional[str] = None) -> List[Dict[str, Any]]:
+    async def extract_all(
+        self, selector: str, attribute: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
         """
         Extrai dados de múltiplos elementos.
 
@@ -236,7 +232,9 @@ class WebAutomation:
             logger.error(f"Erro ao tirar screenshot: {e}")
             raise
 
-    async def wait_for_selector(self, selector: str, timeout: int = 30000, state: str = "visible") -> None:
+    async def wait_for_selector(
+        self, selector: str, timeout: int = 30000, state: str = "visible"
+    ) -> None:
         """
         Aguarda por um selector.
 

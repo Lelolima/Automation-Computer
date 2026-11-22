@@ -6,7 +6,7 @@ import pytest
 import asyncio
 import sys
 from pathlib import Path
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, patch
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
@@ -27,7 +27,7 @@ class TestWebAutomation:
     @pytest.mark.asyncio
     async def test_context_manager(self):
         """Testa context manager async."""
-        with patch('src.automation.web_automation.async_playwright') as mock_playwright:
+        with patch("src.automation.web_automation.async_playwright") as mock_playwright:
             from src.automation.web_automation import WebAutomation
 
             # Mock da resposta do playwright
@@ -36,7 +36,9 @@ class TestWebAutomation:
             mock_page = AsyncMock()
 
             mock_playwright.return_value.start = AsyncMock()
-            mock_playwright.return_value.start.return_value.chromium.launch = AsyncMock(return_value=mock_browser)
+            mock_playwright.return_value.start.return_value.chromium.launch = AsyncMock(
+                return_value=mock_browser
+            )
             mock_browser.new_context = AsyncMock(return_value=mock_context)
             mock_context.new_page = AsyncMock(return_value=mock_page)
 

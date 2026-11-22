@@ -2,7 +2,6 @@
 Testes unitários para o módulo de segurança
 """
 
-import pytest
 import sys
 from pathlib import Path
 
@@ -12,7 +11,8 @@ from src.security.encryption import (
     EncryptionService,
     PasswordService,
     RateLimiter,
-    Auditor
+    Auditor,
+    Sandbox,
 )
 
 
@@ -76,17 +76,28 @@ class TestRateLimiter:
         for i in range(5):
             assert limiter.acquire() is True
 
-    def test_rate_limit_exceeded(self):
-        """Testa que rate limit é respeitado."""
+    def test_burst_limit_no_mesmo_segundo(self):
+        """No mesmo segundo, só `burst` requisições passam."""
         limiter = RateLimiter(requests_per_minute=3, burst=2)
 
-        # Primeiro 2 (burst) + 1 (normal) = 3 devem passar
         assert limiter.acquire() is True
         assert limiter.acquire() is True
-        assert limiter.acquire() is True
+        assert limiter.acquire() is False  # burst esgotado
 
-        # O quarto deve ser bloqueado
-        assert limiter.acquire() is False
+    def test_rate_limit_por_minuto(self, monkeypatch):
+        """Com o burst renovado a cada segundo, o limite por minuto ainda vale."""
+        agora = [1000.0]
+        monkeypatch.setattr("src.security.encryption.time.time", lambda: agora[0])
+        limiter = RateLimiter(requests_per_minute=3, burst=2)
+
+        resultados = []
+        for _ in range(4):
+            resultados.append(limiter.acquire())
+            agora[0] += 1.5  # renova o burst
+        assert resultados == [True, True, True, False]
+
+        agora[0] += 61  # janela de 1 minuto expira
+        assert limiter.acquire() is True
 
 
 class TestAuditor:
@@ -97,10 +108,7 @@ class TestAuditor:
         auditor = Auditor(log_path="test_audit.json")
 
         auditor.log_action(
-            action="click",
-            agent="test_user",
-            details={"element": "button_submit"},
-            success=True
+            action="click", agent="test_user", details={"element": "button_submit"}, success=True
         )
 
         logs = auditor.get_logs(agent="test_user")
@@ -121,4 +129,38 @@ class TestAuditor:
 
         assert len(all_logs) == 3
         assert len(user2_logs) == 2
-        assert len(click_logs) == 1
+        assert len(click_logs) == 2  # há dois "click" (user1 e user2)
+
+
+class TestSandbox:
+    """Testes de isolamento do Sandbox."""
+
+    def test_caminho_dentro_permitido(self, tmp_path):
+        permitido = tmp_path / "dados"
+        permitido.mkdir()
+        sandbox = Sandbox(allowed_paths=[str(permitido)])
+        assert sandbox.is_path_allowed(str(permitido / "arquivo.txt"))
+        assert sandbox.is_path_allowed(str(permitido))
+
+    def test_caminho_com_mesmo_prefixo_negado(self, tmp_path):
+        """'dados_evil' não pode passar só por começar com 'dados'."""
+        permitido = tmp_path / "dados"
+        sandbox = Sandbox(allowed_paths=[str(permitido)])
+        assert not sandbox.is_path_allowed(str(tmp_path / "dados_evil" / "x.txt"))
+
+    def test_path_traversal_negado(self, tmp_path):
+        permitido = tmp_path / "dados"
+        sandbox = Sandbox(allowed_paths=[str(permitido)])
+        assert not sandbox.is_path_allowed(str(permitido / ".." / "segredo.txt"))
+
+    def test_dominio_exato_e_subdominio(self):
+        sandbox = Sandbox(allowed_domains=["example.com"])
+        assert sandbox.is_domain_allowed("https://example.com/a")
+        assert sandbox.is_domain_allowed("https://api.example.com:8443/a")
+        assert not sandbox.is_domain_allowed("https://evil-example.com/")
+
+    def test_dominio_maiusculo_e_credenciais(self):
+        sandbox = Sandbox(allowed_domains=["example.com"])
+        assert sandbox.is_domain_allowed("https://EXAMPLE.com/")
+        # userinfo não pode enganar o parser
+        assert not sandbox.is_domain_allowed("https://example.com@evil.com/")

@@ -60,6 +60,8 @@ Sistema avançado de **RPA (Robotic Process Automation)** com integração de IA
 
 ## 🚀 Funcionalidades
 
+> **Estado real (auditoria 2026-11-22):** estão implementados `DesktopController` (mouse, teclado e janelas via pywinauto/pynput, **somente Windows**), `WebAutomation` (Playwright), `LLMOrchestrator` (Anthropic/OpenAI/Ollama com fallback), o módulo de segurança (Fernet, bcrypt, rate limit, sandbox de caminhos/domínios, auditoria em memória/JSON) e a CLI (`hello`, `status`, `version`; `desktop` e `web` ainda só imprimem "em desenvolvimento"). Itens das tabelas abaixo marcados como detecção por imagem, visão (MediaPipe/YOLO), tabelas/`select`, chat com contexto persistente e dashboard **não estão implementados**. As dependências desses recursos futuros ficam em `requirements-optional.txt`.
+
 ### Automação Desktop
 | Feature | Descrição |
 |---------|-----------|
@@ -165,9 +167,13 @@ cd Automation-Computer
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-playwright install
-python -m src.ui.cli
+playwright install chromium
+python -m src --help
 ```
+No Linux/macOS o `DesktopController` não funciona (pywinauto é exclusivo do Windows); Web, IA, segurança e CLI funcionam.
+
+### Variáveis de ambiente
+Copie `.env.example` para `.env` (a CLI carrega o arquivo automaticamente). As chaves `ANTHROPIC_API_KEY`/`OPENAI_API_KEY` só são necessárias para usar o `LLMOrchestrator`; sem elas, ele tenta o Ollama local.
 
 ### Validação Pós-Instalação
 
@@ -346,11 +352,14 @@ Consulte `GOVERNANCA_LGPD.md` para detalhes completos sobre conformidade.
 ## 🧪 Testes
 
 ```bash
-# Instalar dependências de desenvolvimento
-pip install -r requirements-dev.txt
+# Instalar dependências de teste
+pip install pytest pytest-cov pytest-asyncio pytest-mock flake8 black
+python -m playwright install chromium   # para o teste real de navegador
 
-# Executar testes unitários
-pytest tests/ -v --cov=src
+# Lint + testes (o mesmo que o CI roda)
+flake8 src tests --max-line-length=100 --select=E9,F63,F7,F82,F401,F841
+black --check src tests
+pytest -v -rs --cov=src
 
 # Verificar cobertura
 coverage html

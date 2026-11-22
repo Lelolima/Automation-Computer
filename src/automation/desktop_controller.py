@@ -5,7 +5,7 @@ Controle de mouse, teclado e janelas Windows usando pywinauto + pynput
 Criado por Wellington de Lima Catarina
 """
 
-from typing import Optional, List
+from typing import Optional
 import time
 import logging
 
@@ -73,11 +73,7 @@ class DesktopController:
         """
         try:
             self.mouse.position = (x, y)
-            button_map = {
-                "left": Button.left,
-                "right": Button.right,
-                "middle": Button.middle
-            }
+            button_map = {"left": Button.left, "right": Button.right, "middle": Button.middle}
             for _ in range(clicks):
                 self.mouse.click(button_map.get(button, Button.left))
                 time.sleep(0.1)
@@ -137,23 +133,23 @@ class DesktopController:
         """
         try:
             key_map = {
-                'enter': Key.enter,
-                'tab': Key.tab,
-                'esc': Key.esc,
-                'space': Key.space,
-                'backspace': Key.backspace,
-                'delete': Key.delete,
+                "enter": Key.enter,
+                "tab": Key.tab,
+                "esc": Key.esc,
+                "space": Key.space,
+                "backspace": Key.backspace,
+                "delete": Key.delete,
             }
 
             if key in key_map:
                 self.keyboard.press(key_map[key])
                 self.keyboard.release(key_map[key])
-            elif key == 'ctrl_c':
-                self._press_hotkey(Key.ctrl, 'c')
-            elif key == 'ctrl_v':
-                self._press_hotkey(Key.ctrl, 'v')
-            elif key == 'ctrl_a':
-                self._press_hotkey(Key.ctrl, 'a')
+            elif key == "ctrl_c":
+                self._press_hotkey(Key.ctrl, "c")
+            elif key == "ctrl_v":
+                self._press_hotkey(Key.ctrl, "v")
+            elif key == "ctrl_a":
+                self._press_hotkey(Key.ctrl, "a")
             else:
                 self.keyboard.press(key)
                 self.keyboard.release(key)

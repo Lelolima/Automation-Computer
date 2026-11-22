@@ -2,7 +2,6 @@
 Testes para DesktopController
 """
 
-import pytest
 import sys
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -15,8 +14,10 @@ class TestDesktopController:
 
     def test_init(self):
         """Testa inicialização."""
-        with patch('src.automation.desktop_controller.MouseController') as mock_mouse, \
-             patch('src.automation.desktop_controller.KeyboardController') as mock_keyboard:
+        with (
+            patch("src.automation.desktop_controller.MouseController") as mock_mouse,
+            patch("src.automation.desktop_controller.KeyboardController") as mock_keyboard,
+        ):
 
             from src.automation.desktop_controller import DesktopController
 
@@ -29,8 +30,10 @@ class TestDesktopController:
 
     def test_type_text(self):
         """Testa digitação de texto."""
-        with patch('src.automation.desktop_controller.MouseController'), \
-             patch('src.automation.desktop_controller.KeyboardController') as mock_kb_cls:
+        with (
+            patch("src.automation.desktop_controller.MouseController"),
+            patch("src.automation.desktop_controller.KeyboardController") as mock_kb_cls,
+        ):
 
             from src.automation.desktop_controller import DesktopController
 
@@ -45,9 +48,11 @@ class TestDesktopController:
 
     def test_press_key_enter(self):
         """Testa pressionar Enter."""
-        with patch('src.automation.desktop_controller.MouseController'), \
-             patch('src.automation.desktop_controller.KeyboardController') as mock_kb_cls, \
-             patch('src.automation.desktop_controller.Key') as mock_key:
+        with (
+            patch("src.automation.desktop_controller.MouseController"),
+            patch("src.automation.desktop_controller.KeyboardController") as mock_kb_cls,
+            patch("src.automation.desktop_controller.Key") as mock_key,
+        ):
 
             from src.automation.desktop_controller import DesktopController
 
