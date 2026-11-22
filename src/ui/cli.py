@@ -5,13 +5,35 @@ Interface de linha de comando usando Typer + Rich
 Criado por Wellington de Lima Catarina
 """
 
+import importlib
+
 import typer
+from dotenv import load_dotenv
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
+load_dotenv()  # carrega .env (python-dotenv já era dependência, mas nunca era usado)
+
 app = typer.Typer(help="Automation-Computer - RPA com IA")
 console = Console()
+
+MODULOS = {
+    "Desktop Controller": "src.automation.desktop_controller",
+    "Web Automation": "src.automation.web_automation",
+    "Security": "src.security.encryption",
+    "LLM Orchestrator": "src.ai.llm_orchestrator",
+    "CLI": "src.ui.cli",
+}
+
+
+def _status_modulo(modulo: str) -> str:
+    """Importa o módulo de verdade e informa se está utilizável."""
+    try:
+        importlib.import_module(modulo)
+        return "✅ Disponível"
+    except Exception as exc:  # dependência ausente ou SO não suportado
+        return f"❌ Indisponível ({type(exc).__name__}: {exc})"
 
 
 @app.command()
@@ -31,7 +53,7 @@ def desktop():
 @app.command()
 def web(url: str = typer.Argument(..., help="URL para automatizar")):
     """Inicia automação web."""
-    console.print(Panel(f"[bold blue]Automação Web[/bold blue]"))
+    console.print(Panel("[bold blue]Automação Web[/bold blue]"))
     console.print(f"URL: {url}")
     console.print("Em desenvolvimento: navegação com Playwright")
 
@@ -43,11 +65,9 @@ def status():
     table.add_column("Módulo", style="cyan")
     table.add_column("Status", style="green")
 
-    table.add_row("Desktop Controller", "✅ Disponível")
-    table.add_row("Web Automation", "✅ Disponível")
-    table.add_row("Security", "✅ Disponível")
-    table.add_row("LLM Orchestrator", "✅ Disponível")
-    table.add_row("CLI", "✅ Disponível")
+    # Antes os status eram fixos ("✅ Disponível") mesmo sem as dependências.
+    for nome, modulo in MODULOS.items():
+        table.add_row(nome, _status_modulo(modulo))
     table.add_row("Dashboard", "🔜 Em breve")
 
     console.print(table)
